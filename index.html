@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODELOS MULTI — Archivos</title>
- 
+
 <script>
 (function(){
   try {
@@ -14,11 +14,11 @@
   } catch(e){ document.documentElement.setAttribute('data-theme','light'); }
 })();
 </script>
- 
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   [data-theme="light"] {
     --bg:#FFFFFF; --panel:#F7F5F2; --surface:#FFFFFF; --hover:#F4F2EF; --selected:#EAF2FF;
     --border:#E8E5E1; --border-2:#DBD8D3; --text:#1E1919; --text-2:#6F6B67; --text-3:#A39E99;
@@ -34,7 +34,7 @@
   html, body { height:100%; }
   body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-size:14px; -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; min-height:100vh; transition:background .2s,color .2s; }
   button { font-family:inherit; cursor:pointer; }
- 
+
   /* LOGIN */
   #login { flex:1; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:28px; padding:24px; }
   .login-brand { display:flex; flex-direction:column; align-items:center; gap:14px; }
@@ -55,7 +55,7 @@
   .key.del:hover { color:var(--red); background:var(--red-soft); }
   .pin-hint { font-size:11.5px; color:var(--text-3); text-align:center; margin-top:-8px; }
   .pin-err { font-size:12px; color:var(--red); text-align:center; min-height:15px; font-weight:500; }
- 
+
   /* APP */
   #app { display:none; flex-direction:column; flex:1; min-height:100vh; }
   header { background:var(--bg); border-bottom:1px solid var(--border); height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; position:sticky; top:0; z-index:20; }
@@ -69,14 +69,14 @@
   .btn-text { background:transparent; border:1px solid var(--border-2); border-radius:9px; color:var(--text-2); font-size:13px; font-weight:500; padding:8px 14px; transition:all .15s; }
   .btn-text:hover { background:var(--hover); color:var(--text); border-color:var(--text-3); }
   .container { flex:1; width:100%; max-width:960px; margin:0 auto; padding:22px; position:relative; }
- 
+
   .breadcrumb { display:flex; align-items:center; gap:3px; flex-wrap:wrap; margin-bottom:18px; min-height:28px; }
   .crumb { font-size:19px; font-weight:700; letter-spacing:-0.3px; color:var(--text-2); background:transparent; border:none; padding:3px 7px; border-radius:7px; transition:all .12s; }
   .crumb:hover { background:var(--hover); color:var(--text); }
   .crumb.active { color:var(--text); cursor:default; }
   .crumb.active:hover { background:transparent; }
   .crumb-sep { color:var(--text-3); font-size:16px; margin:0 1px; }
- 
+
   .toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
   .toolbar-actions { display:flex; gap:9px; }
   .toolbar-right { display:flex; align-items:center; gap:14px; }
@@ -91,17 +91,17 @@
   .btn-danger:hover { background:var(--red); color:#fff; }
   .btn:disabled { opacity:.45; cursor:not-allowed; }
   .item-count { font-size:13px; color:var(--text-3); font-weight:500; }
- 
+
   .view-toggle { display:inline-flex; background:var(--panel); border:1px solid var(--border); border-radius:9px; padding:2px; }
   .vt-btn { width:32px; height:30px; border:none; background:transparent; border-radius:7px; color:var(--text-3); display:flex; align-items:center; justify-content:center; transition:all .12s; }
   .vt-btn svg { width:16px; height:16px; }
   .vt-btn.active { background:var(--surface); color:var(--text); box-shadow:var(--shadow-sm); }
- 
+
   .selbar { display:none; align-items:center; gap:10px; background:var(--blue-soft); border:1px solid color-mix(in srgb, var(--blue) 30%, transparent); border-radius:11px; padding:10px 14px; margin-bottom:14px; }
   .selbar.show { display:flex; }
   .selbar-count { font-size:13px; font-weight:600; color:var(--blue); flex:1; }
   [data-theme="dark"] .selbar-count { color:var(--text); }
- 
+
   /* LIST */
   .list { background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-sm); }
   .list-head { display:grid; grid-template-columns:42px 1fr 150px 100px 44px; padding:0 8px 0 14px; height:40px; align-items:center; border-bottom:1px solid var(--border); font-size:11px; font-weight:600; letter-spacing:.4px; text-transform:uppercase; color:var(--text-3); }
@@ -125,7 +125,7 @@
   .menu-btn { width:30px; height:30px; border-radius:8px; background:transparent; border:none; color:var(--text-2); display:flex; align-items:center; justify-content:center; opacity:0; transition:all .12s; font-size:18px; line-height:1; }
   .row:hover .menu-btn, .card:hover .menu-btn { opacity:1; }
   .menu-btn:hover { background:var(--border); color:var(--text); }
- 
+
   /* GRID */
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:14px; padding:16px; }
   .card { position:relative; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface); cursor:pointer; transition:all .12s; }
@@ -143,20 +143,20 @@
   .card-menu { position:absolute; top:6px; right:6px; z-index:2; opacity:0; transition:opacity .12s; }
   .card:hover .card-menu { opacity:1; }
   .card-menu .menu-btn { background:var(--surface); box-shadow:var(--shadow-sm); opacity:1; }
- 
+
   .state { text-align:center; padding:56px 24px; color:var(--text-3); }
   .state .ico { width:48px; height:48px; margin:0 auto 14px; opacity:.8; }
   .state p { font-size:14px; font-weight:500; }
   .state .hint { font-size:12.5px; color:var(--text-3); margin-top:4px; font-weight:400; }
   .spinner { width:22px; height:22px; border:2.5px solid var(--border-2); border-top-color:var(--blue); border-radius:50%; animation:spin .7s linear infinite; margin:40px auto; }
   @keyframes spin { to { transform:rotate(360deg); } }
- 
+
   .drop-overlay { position:absolute; inset:22px; border:2.5px dashed var(--blue); border-radius:14px; background:var(--blue-soft); backdrop-filter:blur(2px); display:none; align-items:center; justify-content:center; flex-direction:column; z-index:30; pointer-events:none; gap:12px; }
   .drop-overlay.show { display:flex; }
   .drop-overlay svg { width:44px; height:44px; color:var(--blue); }
   .drop-overlay p { font-size:16px; font-weight:600; color:var(--blue); }
   [data-theme="dark"] .drop-overlay p, [data-theme="dark"] .drop-overlay svg { color:var(--text); }
- 
+
   .uploads { position:fixed; bottom:20px; right:20px; width:340px; max-width:calc(100vw - 40px); z-index:60; display:none; }
   .uploads.show { display:block; }
   .uploads-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); overflow:hidden; }
@@ -169,7 +169,7 @@
   .up-pct { font-size:11px; color:var(--text-3); width:30px; text-align:right; flex-shrink:0; }
   .up-pct.done { color:var(--green); }
   .up-pct.fail { color:var(--red); }
- 
+
   .ctx { position:fixed; z-index:100; min-width:184px; background:var(--surface); border:1px solid var(--border); border-radius:11px; box-shadow:var(--shadow); padding:6px; display:none; }
   .ctx.show { display:block; }
   .ctx-item { display:flex; align-items:center; gap:11px; width:100%; padding:9px 11px; border-radius:7px; border:none; background:transparent; color:var(--text); font-size:13.5px; font-weight:500; text-align:left; }
@@ -178,7 +178,7 @@
   .ctx-item.danger { color:var(--red); }
   .ctx-item.danger svg { color:var(--red); }
   .ctx-sep { height:1px; background:var(--border); margin:5px 0; }
- 
+
   .modal-bg { position:fixed; inset:0; background:var(--overlay); display:none; align-items:center; justify-content:center; z-index:90; padding:24px; }
   .modal-bg.show { display:flex; }
   .modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); width:100%; max-width:400px; overflow:hidden; }
@@ -189,7 +189,7 @@
   .modal-input { width:100%; margin-top:14px; padding:11px 13px; background:var(--bg); border:1.5px solid var(--border-2); border-radius:9px; color:var(--text); font-size:14px; font-family:inherit; outline:none; transition:border .15s; }
   .modal-input:focus { border-color:var(--blue); }
   .modal-foot { display:flex; justify-content:flex-end; gap:9px; padding:20px 24px 22px; }
- 
+
   .move-nav { display:flex; align-items:center; gap:4px; flex-wrap:wrap; padding:0 24px; margin-top:14px; min-height:26px; }
   .move-crumb { font-size:13px; font-weight:600; color:var(--text-2); background:transparent; border:none; padding:2px 6px; border-radius:6px; }
   .move-crumb:hover { background:var(--hover); color:var(--text); }
@@ -203,11 +203,11 @@
   .move-row .nm { font-size:13.5px; font-weight:500; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .move-row .arr { color:var(--text-3); font-size:16px; }
   .move-empty { padding:28px; text-align:center; font-size:13px; color:var(--text-3); }
- 
+
   .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(12px); background:var(--text); color:var(--bg); padding:11px 18px; border-radius:10px; font-size:13px; font-weight:500; z-index:110; opacity:0; pointer-events:none; transition:all .2s; box-shadow:var(--shadow); display:flex; align-items:center; gap:9px; max-width:calc(100vw - 32px); }
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   .toast svg { width:16px; height:16px; flex-shrink:0; }
- 
+
   @media (max-width:620px) {
     .list-head { grid-template-columns:38px 1fr 44px; }
     .list-head .col-mod, .list-head .col-size { display:none; }
@@ -223,7 +223,7 @@
 </style>
 </head>
 <body>
- 
+
 <!-- LOGIN -->
 <div id="login">
   <div class="login-brand">
@@ -250,7 +250,7 @@
     <div class="pin-err" id="pin-err"></div>
   </div>
 </div>
- 
+
 <!-- APP -->
 <div id="app">
   <header>
@@ -267,10 +267,10 @@
       <button class="btn-text" id="logout-btn">Salir</button>
     </div>
   </header>
- 
+
   <div class="container" id="container">
     <div class="breadcrumb" id="breadcrumb"></div>
- 
+
     <div class="selbar" id="selbar">
       <span class="selbar-count" id="sel-count"></span>
       <button class="btn btn-ghost" id="sel-rename">Renombrar</button>
@@ -278,7 +278,7 @@
       <button class="btn btn-danger" id="sel-delete">Eliminar</button>
       <button class="btn btn-ghost" id="sel-cancel">Cancelar</button>
     </div>
- 
+
     <div class="toolbar">
       <div class="toolbar-actions">
         <button class="btn btn-ghost" id="back-btn" disabled>
@@ -300,35 +300,37 @@
         <div class="item-count" id="item-count"></div>
       </div>
     </div>
- 
+
     <div class="list" id="list"><div class="spinner"></div></div>
- 
+
     <div class="drop-overlay" id="drop-overlay">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <p>Soltá los archivos para subirlos</p>
     </div>
   </div>
 </div>
- 
+
 <div class="uploads" id="uploads">
   <div class="uploads-card">
     <div class="uploads-head"><span id="uploads-title">Subiendo…</span></div>
     <div class="uploads-body" id="uploads-body"></div>
   </div>
 </div>
- 
+
 <div class="ctx" id="ctx"></div>
 <div class="modal-bg" id="modal-bg"><div class="modal" id="modal"></div></div>
 <div class="toast" id="toast"></div>
- 
+
 <script>
 // ═══════════ CONFIG ═══════════
-// ⚠️ Este token caduca cada ~4 horas (es "short-lived"). Si la app da error de
-//    token o de permisos, pegá aquí tu token MÁS RECIENTE de la consola de Dropbox.
-const TOKEN = 'sl.u.AGj2thjNP8id6uZQyojBHhSXb3tkqPJvsy_yjeikHZseH5i6TZbNzBWXsTQevwFqOyOPHO3B8dxJ7DCkYDUhc75RdK7FTkmLk7rQSHgv1rRiyGw3EGRj7ShSiyCwuuF02OgsNFIemBEouiXSCU-X4QveCYj_zL7cDqLRCjxIh8mIGSJ6pBuTSwDtQPGdjb3QDJYOYSnU2HEpwdpmGjMWONLCWbbIT3lEnLFtIhw6claItyBk18w6YD1QKTIls9vrO-8GqN8t1s66By40CxDL3XiOZsmMr9WeqQiozOFjISwudu0TD73ObRL4hkHEFpUFqiXTIKYuEq_AVACyRa0PPqY6W62cO8SHF8wPN4X3UNvp8AhEkYiH343WA4SH7bFrLnsuA3OZkiNpR3K2VNSPxXyhFEB1FjPdyc6sC664nhDZjoDrsZ5abKHsNJdXTmn3dUSKh3TpHaL6OfKxun3ybCmbahPXEFsPEmyqYdKBqrmGgSpVRKnegBeAze6u_NmeEUKeXeH6VpLctFnOBItDcpgJc7zac6F_ZmjBxPPKDnW5EkC8On9fqVXXkBs-LYQ-bI9fn-KL1L9TlDuChO3lnmgHMhtv1K_toFIHDPo61vGLk26OcNdqq7lumseYDKGQNESLW7AyVhRaVo9Kv-Z0vvC7uYpkmSXkerd5ccsDpu_-CRECa-NUc80ke_q1aADs76g-NaQAmW3NCzrmmK-Prjd0ZjgCIg9UtXGEE-ijZuXpW31tQFYI3a8vg1GIs4QRAVVoZNyZpQvG01YuP5l0dd5ZJCdYkZXKiCdwbgQ4R7NZIng2XNF2X4nW5gYNsu5fWOE9kGJT1psHemBiKfMR40wEq5tekF9ksZT45PfN3fNV5hoTrmmg3OnZuni_n--B4JnJYMdQXkHRJhLakraI8sF1LiEDaNVoGf5p4nYaYyDcQ6UPHZfm3lJP9VlZNOcAnqGOfyGxCh6DO6HN3vnrFlDNX8DmgIceE9HBrqV9-sD-ybRYwB5BEFP2YrL3yScat_azKPOcd0uRxs9J_qUHuQjfXHpOuMCA0JMHqMba977wP3ZXKpc209Nej_K5AaPAb1FuFVli_g_L_1CfxtsEfN-p48OvqL2ZsRYh_kCiF9640IKYZtwAUr-37l_bdog9RTFoIiRo2oImKERqNaryX7jZUFibvlZyS9BZG7ZIBx26BcQfpF2SypzMNbeQD65fCdQt-dfJzJeyj4XAtLSpZzYqa3p1hXxMdsxxwhUoBSZh-z4kP-oQNDeaa-_QDOX06otLcdosnkpsNhQ5u5WPeZAQtXc0yvHY-Ws1CrYQxyLCcl98FMxdR49zuiyFybovEC1OpfgwDd2JEhz7D6dWiFKPgwwPEWxy59mUnFEW_ulQuuLPphhs5H9O_t5dxfkiyarmvVNaaVrsj4WMH40PyoTB4Px4bgA3D7wocYe3oEy7KT2F4LbGymIBg3dxbYJmldw';
+// La app pide un token fresco a Dropbox al abrir, usando el refresh token (no expira).
+// Ya no hay que pegar tokens a mano nunca más.
+const APP_KEY = '27d7b4vpvcfrcxe';
+const APP_SECRET = '8my9iapryynp2ke';
+const REFRESH_TOKEN = '6of-NlsXNPoAAAAAAAAAAUJYaiI2s_WwSpZkxCy97488tuu0gNaMhb1KDw826RMZ';
 const PIN = '1234';
 const ROOT = '/MODELOS MULTI';
- 
+
 // ═══════════ STATE ═══════════
 let currentPath = ROOT, pathStack = [], items = [], selected = new Set(), itemByLower = {};
 let pinInput = '', ctxItem = null;
@@ -337,7 +339,7 @@ let viewMode = 'list', renderSeq = 0;
 const thumbCache = {};
 try { const v = localStorage.getItem('mm_view'); if(v==='grid'||v==='list') viewMode = v; } catch(e){}
 const $ = id => document.getElementById(id);
- 
+
 // ═══════════ THEME ═══════════
 const sunSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
 const moonSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
@@ -346,7 +348,7 @@ function renderThemeBtn(){ $('theme-btn').innerHTML = currentTheme()==='dark' ? 
 function toggleTheme(){ const t = currentTheme()==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme',t); try{localStorage.setItem('mm_theme',t);}catch(e){} renderThemeBtn(); }
 renderThemeBtn();
 $('theme-btn').addEventListener('click', toggleTheme);
- 
+
 // ═══════════ VIEW TOGGLE ═══════════
 function updateViewToggle(){ document.querySelectorAll('.vt-btn').forEach(b=> b.classList.toggle('active', b.dataset.view===viewMode)); }
 document.querySelectorAll('.vt-btn').forEach(b=> b.addEventListener('click', ()=>{
@@ -356,7 +358,7 @@ document.querySelectorAll('.vt-btn').forEach(b=> b.addEventListener('click', ()=
   updateViewToggle(); render();
 }));
 updateViewToggle();
- 
+
 // ═══════════ PIN ═══════════
 $('keypad').addEventListener('click', e => {
   const k = e.target.closest('.key'); if(!k) return;
@@ -386,15 +388,37 @@ function checkPin(){
   }
 }
 $('logout-btn').addEventListener('click', ()=>{ pinInput=''; updateDots(); selected.clear(); $('login').style.display='flex'; $('app').style.display='none'; });
- 
+
 // ═══════════ DROPBOX API ═══════════
 // Dropbox-API-Arg sólo admite ASCII; escapamos caracteres no-ASCII (acentos, ñ).
 function dbxArg(obj){ return JSON.stringify(obj).replace(/[\u007f-\uffff]/g, c => '\\u'+c.charCodeAt(0).toString(16).padStart(4,'0')); }
- 
+
+// El token de acceso dura ~4h. Con el refresh token pedimos uno nuevo automáticamente.
+let accessToken = null, tokenExpiresAt = 0, refreshPromise = null;
+async function refreshAccessToken(){
+  const r = await fetch('https://api.dropboxapi.com/oauth2/token', {
+    method:'POST',
+    headers:{ 'Authorization':'Basic '+btoa(APP_KEY+':'+APP_SECRET), 'Content-Type':'application/x-www-form-urlencoded' },
+    body: 'grant_type=refresh_token&refresh_token='+encodeURIComponent(REFRESH_TOKEN)
+  });
+  if(!r.ok){ let m=await r.text(); try{const j=JSON.parse(m); m=j.error_description||j.error_summary||j.error||m;}catch(e){} throw new Error('No se pudo renovar el acceso a Dropbox: '+m); }
+  const d = await r.json();
+  accessToken = d.access_token;
+  tokenExpiresAt = Date.now() + ((d.expires_in||14400)*1000);
+  return accessToken;
+}
+async function ensureToken(){
+  if(accessToken && Date.now() < tokenExpiresAt - 5*60*1000) return accessToken;
+  if(!refreshPromise) refreshPromise = refreshAccessToken().finally(()=>{ refreshPromise = null; });
+  await refreshPromise;
+  return accessToken;
+}
+
 async function dbx(endpoint, body){
+  const tok = await ensureToken();
   const r = await fetch('https://api.dropboxapi.com/2/'+endpoint, {
     method:'POST',
-    headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/json' },
+    headers:{ 'Authorization':'Bearer '+tok, 'Content-Type':'application/json' },
     body: JSON.stringify(body)
   });
   if(!r.ok){
@@ -404,13 +428,14 @@ async function dbx(endpoint, body){
   }
   return r.status === 204 ? {} : r.json();
 }
- 
+
 async function dbxUpload(path, file, onProgress){
   const CHUNK = 8*1024*1024;
   if(file.size <= CHUNK){
+    const tok = await ensureToken();
     const r = await fetch('https://content.dropboxapi.com/2/files/upload', {
       method:'POST',
-      headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({ path, mode:'add', autorename:true }) },
+      headers:{ 'Authorization':'Bearer '+tok, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({ path, mode:'add', autorename:true }) },
       body: await file.arrayBuffer()
     });
     if(!r.ok){ let m=await r.text(); try{m=JSON.parse(m).error_summary||m;}catch(e){} throw new Error(m); }
@@ -418,34 +443,36 @@ async function dbxUpload(path, file, onProgress){
   }
   const total = Math.ceil(file.size/CHUNK); let offset=0, sid=null;
   for(let i=0;i<total;i++){
+    const tok = await ensureToken();
     const buf = await file.slice(offset, offset+CHUNK).arrayBuffer();
     if(i===0){
-      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/start',{ method:'POST', headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({close:false}) }, body:buf });
+      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/start',{ method:'POST', headers:{ 'Authorization':'Bearer '+tok, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({close:false}) }, body:buf });
       if(!r.ok){ let m=await r.text(); try{m=JSON.parse(m).error_summary||m;}catch(e){} throw new Error(m); }
       sid = (await r.json()).session_id;
     } else if(i < total-1){
-      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/append_v2',{ method:'POST', headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({cursor:{session_id:sid,offset},close:false}) }, body:buf });
+      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/append_v2',{ method:'POST', headers:{ 'Authorization':'Bearer '+tok, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({cursor:{session_id:sid,offset},close:false}) }, body:buf });
       if(!r.ok){ let m=await r.text(); try{m=JSON.parse(m).error_summary||m;}catch(e){} throw new Error(m); }
     } else {
-      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/finish',{ method:'POST', headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({cursor:{session_id:sid,offset},commit:{path,mode:'add',autorename:true}}) }, body:buf });
+      const r = await fetch('https://content.dropboxapi.com/2/files/upload_session/finish',{ method:'POST', headers:{ 'Authorization':'Bearer '+tok, 'Content-Type':'application/octet-stream', 'Dropbox-API-Arg': dbxArg({cursor:{session_id:sid,offset},commit:{path,mode:'add',autorename:true}}) }, body:buf });
       if(!r.ok){ let m=await r.text(); try{m=JSON.parse(m).error_summary||m;}catch(e){} throw new Error(m); }
     }
     offset += CHUNK;
     onProgress(Math.round(((i+1)/total)*100));
   }
 }
- 
+
 async function getThumb(path){
   if(thumbCache[path]) return thumbCache[path];
+  const tok = await ensureToken();
   const r = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
     method:'POST',
-    headers:{ 'Authorization':'Bearer '+TOKEN, 'Dropbox-API-Arg': dbxArg({ resource:{'.tag':'path', path}, format:'jpeg', size:'w256h256', mode:'strict' }) }
+    headers:{ 'Authorization':'Bearer '+tok, 'Dropbox-API-Arg': dbxArg({ resource:{'.tag':'path', path}, format:'jpeg', size:'w256h256', mode:'strict' }) }
   });
   if(!r.ok) throw new Error('no thumb');
   const url = URL.createObjectURL(await r.blob());
   thumbCache[path] = url; return url;
 }
- 
+
 async function runLimited(arr, limit, fn){
   const out=[]; let i=0;
   const workers = Array(Math.min(limit, arr.length)).fill(0).map(async ()=>{
@@ -453,7 +480,7 @@ async function runLimited(arr, limit, fn){
   });
   await Promise.all(workers); return out;
 }
- 
+
 // ═══════════ LOAD / RENDER ═══════════
 async function loadFolder(path){
   currentPath = path; selected.clear(); updateSelbar(); updateBreadcrumb();
@@ -468,13 +495,13 @@ async function loadFolder(path){
     $('list').innerHTML = `<div class="state"><div class="ico">${warnIcon}</div><p>No se pudo cargar</p><p class="hint">${escHtml(e.message)}</p></div>`;
   }
 }
- 
+
 function render(){ renderSeq++; if(viewMode==='grid') renderGrid(); else renderList(); }
- 
+
 function setCount(){ $('item-count').textContent = items.length + (items.length===1?' elemento':' elementos'); }
 function emptyHTML(){ return `<div class="state"><div class="ico">${folderOpenIcon}</div><p>Carpeta vacía</p><p class="hint">Arrastrá archivos aquí o usá el botón Subir</p></div>`; }
 const checkSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
- 
+
 function renderList(){
   setCount();
   const list = $('list');
@@ -499,7 +526,7 @@ function renderList(){
     }).join('')}`;
   list.classList.toggle('has-sel', selected.size>0);
 }
- 
+
 function renderGrid(){
   setCount();
   const list = $('list'); const seq = renderSeq;
@@ -523,7 +550,7 @@ function renderGrid(){
     try { const url = await getThumb(x.it.path_display); if(seq!==renderSeq) return; const el=$('thumb-'+x.i); if(el) el.innerHTML = `<img src="${url}" alt="" loading="lazy">`; } catch(e){}
   });
 }
- 
+
 // delegación de clics (sirve para filas y tarjetas)
 $('list').addEventListener('click', e => {
   if(e.target.closest('#check-all')){ toggleAll(); return; }
@@ -535,7 +562,7 @@ $('list').addEventListener('click', e => {
   if(it['.tag']==='folder' && selected.size===0){ pathStack.push(currentPath); loadFolder(it.path_display); }
   else toggleSelect(it);
 });
- 
+
 function toggleSelect(it){ if(selected.has(it.path_lower)) selected.delete(it.path_lower); else selected.add(it.path_lower); render(); updateSelbar(); }
 function toggleAll(){ if(selected.size===items.length) selected.clear(); else items.forEach(it=>selected.add(it.path_lower)); render(); updateSelbar(); }
 function clearSelection(){ selected.clear(); render(); updateSelbar(); }
@@ -550,7 +577,7 @@ $('sel-cancel').addEventListener('click', clearSelection);
 $('sel-delete').addEventListener('click', ()=> deleteItems([...selected]));
 $('sel-move').addEventListener('click', ()=> openMove([...selected]));
 $('sel-rename').addEventListener('click', ()=>{ const it=itemByLower[[...selected][0]]; if(it) renameItem(it); });
- 
+
 // ═══════════ NAVIGATION ═══════════
 $('back-btn').addEventListener('click', ()=>{ if(pathStack.length) loadFolder(pathStack.pop()); });
 function updateBreadcrumb(){
@@ -569,7 +596,7 @@ $('breadcrumb').addEventListener('click', e => {
   rel.forEach((p,i)=>{ if(i<rel.length-1){ built+='/'+p; pathStack.push(built); } });
   loadFolder(target);
 });
- 
+
 // ═══════════ CONTEXT MENU ═══════════
 function openMenu(it, btn){
   ctxItem = it; const folder = it['.tag']==='folder'; const ctx = $('ctx');
@@ -598,10 +625,10 @@ $('ctx').addEventListener('click', e => {
 document.addEventListener('click', e => { if(!e.target.closest('#ctx') && !e.target.closest('.menu-btn')) closeMenu(); }, true);
 window.addEventListener('scroll', closeMenu, true);
 window.addEventListener('resize', closeMenu);
- 
+
 // ═══════════ ACTIONS ═══════════
 function parentOf(path){ const i = path.lastIndexOf('/'); return i<=0 ? '' : path.slice(0,i); }
- 
+
 $('newfolder-btn').addEventListener('click', ()=>{
   inputModal('Nueva carpeta','Nombre de la carpeta','','Crear', async name=>{
     name = name.trim(); if(!name) return;
@@ -633,7 +660,7 @@ async function downloadFile(it){
   try { const r = await dbx('files/get_temporary_link', { path: it.path_display }); const a=document.createElement('a'); a.href=r.link; a.download=it.name; document.body.appendChild(a); a.click(); a.remove(); }
   catch(e){ toast(friendlyErr(e.message),'err'); }
 }
- 
+
 // ═══════════ MOVE PICKER ═══════════
 function openMove(lowers){
   moveTargets = lowers.slice(); movePath = ROOT; moveStack = [];
@@ -683,7 +710,7 @@ async function confirmMove(){
   else toast(valid.length===1?'Movido':`${valid.length} movidos`,'ok');
   selected.clear(); await loadFolder(currentPath);
 }
- 
+
 // ═══════════ UPLOAD ═══════════
 $('upload-btn').addEventListener('click', ()=> $('file-input').click());
 $('file-input').addEventListener('change', e=>{ uploadFiles(e.target.files); e.target.value=''; });
@@ -692,7 +719,7 @@ cont.addEventListener('dragenter', e=>{ e.preventDefault(); if(e.dataTransfer.ty
 cont.addEventListener('dragover', e=> e.preventDefault());
 cont.addEventListener('dragleave', e=>{ dragDepth--; if(dragDepth<=0){ dragDepth=0; $('drop-overlay').classList.remove('show'); } });
 cont.addEventListener('drop', e=>{ e.preventDefault(); dragDepth=0; $('drop-overlay').classList.remove('show'); if(e.dataTransfer.files.length) uploadFiles(e.dataTransfer.files); });
- 
+
 async function uploadFiles(fileList){
   const files = Array.from(fileList); if(!files.length) return;
   const box=$('uploads'), body=$('uploads-body');
@@ -713,7 +740,7 @@ async function uploadFiles(fileList){
   setTimeout(()=>{ box.classList.remove('show'); body.innerHTML=''; }, fail?5000:2500);
   await loadFolder(currentPath);
 }
- 
+
 // ═══════════ MODALS ═══════════
 function inputModal(title, placeholder, value, confirmText, onConfirm){
   $('modal').innerHTML = `
@@ -738,7 +765,7 @@ function confirmModal(title, msg, confirmText, danger, onConfirm){
 }
 function closeModal(){ $('modal-bg').classList.remove('show'); $('modal').innerHTML=''; }
 $('modal-bg').addEventListener('click', e=>{ if(e.target===$('modal-bg')) closeModal(); });
- 
+
 // ═══════════ TOAST ═══════════
 let toastT;
 function toast(msg, type){
@@ -748,7 +775,7 @@ function toast(msg, type){
   t.innerHTML = ic + '<span>'+escHtml(msg)+'</span>';
   t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=> t.classList.remove('show'), 4000);
 }
- 
+
 // ═══════════ UTILS ═══════════
 function formatDate(iso){ if(!iso) return '—'; const d=new Date(iso); return d.toLocaleDateString('es-GT',{day:'2-digit',month:'short',year:'numeric'}); }
 function formatSize(b){ if(b==null) return '—'; if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; if(b<1073741824) return (b/1048576).toFixed(1)+' MB'; return (b/1073741824).toFixed(2)+' GB'; }
@@ -756,15 +783,16 @@ function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
 function escAttr(s){ return escHtml(s).replace(/'/g,'&#39;'); }
 function friendlyErr(m){
   m = (m||'').toLowerCase();
-  if(m.includes('missing_scope') || m.includes('scope')) return 'Falta el permiso de escritura. Activá "files.content.write" en tu app de Dropbox, regenerá el token y pegalo de nuevo.';
-  if(m.includes('expired') || m.includes('invalid_access_token') || m.includes('invalid_token') || m.includes('401')) return 'El token caducó — generá uno nuevo en Dropbox y pegalo.';
+  if(m.includes('renovar') || m.includes('refresh')) return 'No se pudo renovar el acceso a Dropbox. Revisá que las credenciales sigan válidas.';
+  if(m.includes('missing_scope') || m.includes('scope')) return 'Falta un permiso (scope) en la app de Dropbox. Activalo en la pestaña Permisos.';
+  if(m.includes('expired') || m.includes('invalid_access_token') || m.includes('invalid_token') || m.includes('401')) return 'Sesión expirada — recargá la página.';
   if(m.includes('conflict')) return 'Ya existe algo con ese nombre';
   if(m.includes('insufficient_space') || m.includes('no_write_permission')) return 'No hay espacio o permiso de escritura en Dropbox';
   if(m.includes('malformed') || m.includes('invalid_path') || m.includes('disallowed')) return 'Nombre o ruta no válidos';
   return 'Algo salió mal: ' + (m.slice(0,80) || 'error desconocido');
 }
 function canThumb(name){ const e=(name.split('.').pop()||'').toLowerCase(); return ['jpg','jpeg','png','gif','bmp','tiff','tif','webp'].includes(e); }
- 
+
 // ═══════════ ICONS ═══════════
 const warnIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 const folderOpenIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
@@ -774,7 +802,7 @@ const iconRename = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const iconMove = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>';
 const iconTrash = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
 const folderIcon = '<svg viewBox="0 0 32 32" width="100%" height="100%"><path d="M4 8a2 2 0 0 1 2-2h6l2.5 2.5H26a2 2 0 0 1 2 2V12H4V8z" fill="#4C8DFF"/><path d="M4 11h24v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V11z" fill="#0061FF"/></svg>';
- 
+
 function doc(body, fold, mark){ return `<svg viewBox="0 0 32 40" width="100%" height="100%"><path d="M7 3h12l7 7v25a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="${body}"/><path d="M19 3l7 7h-5a2 2 0 0 1-2-2V3z" fill="${fold}"/>${mark}</svg>`; }
 const mkLines = '<rect x="11" y="22" width="10" height="2" rx="1" fill="#fff" opacity=".9"/><rect x="11" y="27" width="10" height="2" rx="1" fill="#fff" opacity=".9"/><rect x="11" y="32" width="6" height="2" rx="1" fill="#fff" opacity=".9"/>';
 const mkImg = '<circle cx="13.5" cy="22" r="2.2" fill="#fff"/><path d="M9 33l4.5-6 3 3.5 3.5-4.5 4 7z" fill="#fff" opacity=".95"/>';
