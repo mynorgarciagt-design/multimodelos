@@ -329,7 +329,29 @@ const APP_KEY = '27d7b4vpvcfrcxe';
 const APP_SECRET = '8my9iapryynp2ke';
 const REFRESH_TOKEN = '6of-NlsXNPoAAAAAAAAAAUJYaiI2s_WwSpZkxCy97488tuu0gNaMhb1KDw826RMZ';
 const PIN = '1234';
-const ROOT = '/MODELOS MULTI';
+const ACCOUNT_ROOT = '/MODELOS MULTI';
+
+// Modo invitado: si la URL trae ?f=..., la app se abre ENCERRADA en esa carpeta.
+// El invitado no puede subir de nivel ni ver el resto del Dropbox, y no se le pide PIN.
+let ROOT = ACCOUNT_ROOT;
+let ROOT_LABEL = 'MODELOS MULTI';
+let isGuest = false;
+
+function b64encPath(s){ return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+function b64decPath(s){ s = s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; return decodeURIComponent(escape(atob(s))); }
+
+(function detectGuest(){
+  try {
+    const f = new URLSearchParams(location.search).get('f');
+    if(!f) return;
+    const path = b64decPath(f);
+    // Sólo se permite encerrar en carpetas dentro de la raíz de la cuenta.
+    if(path.toLowerCase() !== ACCOUNT_ROOT.toLowerCase() && !path.toLowerCase().startsWith(ACCOUNT_ROOT.toLowerCase()+'/')) return;
+    ROOT = path;
+    ROOT_LABEL = path.split('/').filter(Boolean).pop() || 'Carpeta';
+    isGuest = true;
+  } catch(e){ /* link inválido → se ignora y entra el modo normal con PIN */ }
+})();
 
 // ═══════════ STATE ═══════════
 let currentPath = ROOT, pathStack = [], items = [], selected = new Set(), itemByLower = {};
@@ -378,14 +400,23 @@ document.addEventListener('keydown', e => {
   }
 });
 function updateDots(){ for(let i=0;i<4;i++) $('d'+i).classList.toggle('filled', i < pinInput.length); }
+function enterApp(){
+  $('login').style.display='none'; $('app').style.display='flex';
+  document.querySelector('.hdr-name').textContent = ROOT_LABEL;
+  if(isGuest) $('logout-btn').style.display = 'none';
+  updateViewToggle(); loadFolder(ROOT);
+}
 function checkPin(){
-  if(pinInput === PIN){
-    $('login').style.display='none'; $('app').style.display='flex';
-    updateViewToggle(); loadFolder(ROOT);
-  } else {
+  if(pinInput === PIN){ enterApp(); }
+  else {
     $('pin-err').textContent = 'PIN incorrecto';
     setTimeout(()=>{ pinInput=''; updateDots(); $('pin-err').textContent=''; }, 800);
   }
+}
+// El invitado entra directo: el link es la llave, no se le pide PIN.
+if(isGuest){
+  document.querySelector('.login-title').textContent = ROOT_LABEL;
+  enterApp();
 }
 $('logout-btn').addEventListener('click', ()=>{ pinInput=''; updateDots(); selected.clear(); $('login').style.display='flex'; $('app').style.display='none'; });
 
@@ -582,7 +613,7 @@ $('sel-rename').addEventListener('click', ()=>{ const it=itemByLower[[...selecte
 $('back-btn').addEventListener('click', ()=>{ if(pathStack.length) loadFolder(pathStack.pop()); });
 function updateBreadcrumb(){
   const rel = currentPath.slice(ROOT.length).split('/').filter(Boolean);
-  let html = `<button class="crumb ${rel.length===0?'active':''}" data-jump="0">MODELOS MULTI</button>`;
+  let html = `<button class="crumb ${rel.length===0?'active':''}" data-jump="0">${escHtml(ROOT_LABEL)}</button>`;
   let built = ROOT;
   rel.forEach((p,i)=>{ built += '/'+p; const last=i===rel.length-1; html += `<span class="crumb-sep">›</span><button class="crumb ${last?'active':''}" data-path="${escAttr(built)}">${escHtml(p)}</button>`; });
   $('breadcrumb').innerHTML = html;
@@ -602,6 +633,7 @@ function openMenu(it, btn){
   ctxItem = it; const folder = it['.tag']==='folder'; const ctx = $('ctx');
   ctx.innerHTML = `
     ${folder ? `<button class="ctx-item" data-m="open">${iconOpen}Abrir</button>` : `<button class="ctx-item" data-m="download">${iconDownload}Descargar</button>`}
+    ${folder && !isGuest ? `<button class="ctx-item" data-m="share">${iconShare}Compartir carpeta…</button>` : ''}
     <button class="ctx-item" data-m="rename">${iconRename}Renombrar</button>
     <button class="ctx-item" data-m="move">${iconMove}Mover a…</button>
     <div class="ctx-sep"></div>
@@ -617,6 +649,7 @@ $('ctx').addEventListener('click', e => {
   const m = e.target.closest('[data-m]')?.dataset.m; if(!m || !ctxItem) return;
   const it = ctxItem; closeMenu();
   if(m==='open'){ pathStack.push(currentPath); loadFolder(it.path_display); }
+  else if(m==='share') shareFolder(it);
   else if(m==='download') downloadFile(it);
   else if(m==='rename') renameItem(it);
   else if(m==='move') openMove([it.path_lower]);
@@ -661,6 +694,30 @@ async function downloadFile(it){
   catch(e){ toast(friendlyErr(e.message),'err'); }
 }
 
+// ═══════════ COMPARTIR CARPETA ═══════════
+function shareFolder(it){
+  const link = location.origin + location.pathname + '?f=' + b64encPath(it.path_display);
+  $('modal').innerHTML = `
+    <div class="modal-head"><div class="modal-title">Compartir "${escHtml(it.name)}"</div></div>
+    <div class="modal-body">
+      <p class="modal-msg">Quien abra este link entra directo a esta carpeta, sin PIN, y no puede salir de ella ni ver el resto del Dropbox. Tiene permisos completos dentro.</p>
+      <input class="modal-input" id="share-link" value="${escAttr(link)}" readonly onclick="this.select()">
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="mc">Cerrar</button>
+      <button class="btn btn-primary" id="share-copy">Copiar link</button>
+    </div>`;
+  $('modal-bg').classList.add('show');
+  $('mc').addEventListener('click', closeModal);
+  $('share-copy').addEventListener('click', async ()=>{
+    const inp = $('share-link');
+    try { await navigator.clipboard.writeText(inp.value); }
+    catch(e){ inp.select(); try{ document.execCommand('copy'); }catch(e2){} }
+    $('share-copy').textContent = '¡Copiado!';
+    setTimeout(()=>{ closeModal(); toast('Link copiado','ok'); }, 600);
+  });
+}
+
 // ═══════════ MOVE PICKER ═══════════
 function openMove(lowers){
   moveTargets = lowers.slice(); movePath = ROOT; moveStack = [];
@@ -678,7 +735,7 @@ function openMove(lowers){
 }
 async function loadMove(){
   const rel = movePath.slice(ROOT.length).split('/').filter(Boolean);
-  let nav = `<button class="move-crumb ${rel.length===0?'active':''}" data-path="${escAttr(ROOT)}">MODELOS MULTI</button>`;
+  let nav = `<button class="move-crumb ${rel.length===0?'active':''}" data-path="${escAttr(ROOT)}">${escHtml(ROOT_LABEL)}</button>`;
   let built = ROOT;
   rel.forEach((p,i)=>{ built += '/'+p; nav += `<span class="crumb-sep">›</span><button class="move-crumb ${i===rel.length-1?'active':''}" data-path="${escAttr(built)}">${escHtml(p)}</button>`; });
   $('move-nav').innerHTML = nav;
@@ -800,6 +857,7 @@ const iconOpen = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const iconDownload = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 const iconRename = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>';
 const iconMove = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>';
+const iconShare = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
 const iconTrash = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
 const folderIcon = '<svg viewBox="0 0 32 32" width="100%" height="100%"><path d="M4 8a2 2 0 0 1 2-2h6l2.5 2.5H26a2 2 0 0 1 2 2V12H4V8z" fill="#4C8DFF"/><path d="M4 11h24v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V11z" fill="#0061FF"/></svg>';
 
