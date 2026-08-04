@@ -413,11 +413,7 @@ function checkPin(){
     setTimeout(()=>{ pinInput=''; updateDots(); $('pin-err').textContent=''; }, 800);
   }
 }
-// El invitado entra directo: el link es la llave, no se le pide PIN.
-if(isGuest){
-  document.querySelector('.login-title').textContent = ROOT_LABEL;
-  enterApp();
-}
+// El invitado entra directo (ver arranque al final del script, cuando todo ya está definido).
 $('logout-btn').addEventListener('click', ()=>{ pinInput=''; updateDots(); selected.clear(); $('login').style.display='flex'; $('app').style.display='none'; });
 
 // ═══════════ DROPBOX API ═══════════
@@ -880,6 +876,14 @@ function iconFor(it){
   if(['xls','xlsx','csv'].includes(ext)) return doc('#1F8A4C','#176B3B',mkLines);
   if(['ppt','pptx'].includes(ext)) return doc('#DD6B20','#B85617',mkLines);
   return doc('#94A3B8','#7D8A9C',mkLines);
+}
+
+// ═══════════ ARRANQUE ═══════════
+// Va al final a propósito: acá ya están definidos todos los iconos y helpers
+// que usa el render. Si se llama antes, el render falla.
+if(isGuest){
+  document.querySelector('.login-title').textContent = ROOT_LABEL;
+  enterApp();
 }
 </script>
 </body>
